@@ -15,26 +15,6 @@
 # Программа должна вывести целое число от 0 до 108 - номер отметки,
 # на которой остановится Вася.
 
-road = 109
-v = int(input("v = "))
-t = int(input("t = "))
-s = abs(v * t)
-
-b = s - (road - 1)
-boo1 = b < 0
-
-while boo1 == False:
-    s -= road
-    b = s - (road - 1)
-    boo1 = b < 0
-    if boo1 == True:
-        break
-
-grade = s
-
-if v < 0:
-    grade = road - s
-if grade == 109:
-    grade = 0
-
-print(grade)
+a = int(input())
+b = int(input())
+print((a * b) % 109)
