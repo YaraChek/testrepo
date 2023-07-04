@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Программа для нахождения НОД (наибольшего общего делителя)
+# Реализован Евклидов алгоритм
+
+euclid_gcd ()
+{
+  while true
+  do
+    if [[ first_number -eq 0 && second_number -ne 0 ]]
+    then
+      let "gcd=$second_number"
+      return
+    elif [[ first_number -ne 0 && second_number -eq 0 ]]
+    then
+      let "gcd=$first_number"
+      return
+    else
+      if [[ first_number -ge second_number ]]
+      then
+        let "first_number %= second_number"
+      else
+        let "second_number %= first_number"
+      fi
+    fi
+  done
+}
+
+while true
+do
+  read first_number second_number
+  if [[ -z $first_number || first_number -eq 0 && second_number -eq 0 ]]
+  then
+    echo "bye"
+    exit
+  else
+    euclid_gcd first_number second_number
+    echo "GCD is $gcd"
+  fi
+done
