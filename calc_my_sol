@@ -1,0 +1,22 @@
+#!/bin/bash
+
+calc ()
+{
+  if [[ $1 == "exit" ]]; then echo "bye"; exit
+  elif [[ $# -ne 3 ]]; then echo "error"; exit
+  elif [[ $2 == "mult" ]]; then expr "$1" \* "$3"
+  elif [[ $2 == "pow" ]]; then let "result = $1 ** $3"; echo "$result"
+  else
+    expr "$1" "$2" "$3"
+  fi
+}
+
+while true
+do
+  read -r num1 operation num2
+  if [[ $operation == "*" ]]; then calc "$num1" "mult" "$num2"
+  elif [[ $operation == "**" ]]; then calc "$num1" "pow" "$num2"
+  else
+    calc $num1 $operation $num2
+  fi
+done
